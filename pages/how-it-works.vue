@@ -3,15 +3,16 @@
 		class="header-gradient text-white px-16 relative antialiased min-h-screen pb-5"
 	>
 		<Header></Header>
-		<main v-if="!job" class=" w-full leading-relaxed container max-w-xl m-auto text-lg">
-			<h1 class="font-semibold text-3xl mb-3">How ConvertGuru works</h1>
+		<main v-if="!job" class=" w-full leading-relaxed max-w-xl m-auto text-lg">
+			<h1 class="font-semibold text-3xl leading-none">How ConvertGuru works</h1>
+			<h2 class="font-semibold text-xl text-indigo-200 mb-3">An experiment made by <a href="https://mateffy.me" class="font-bold">Lukas Mateffy</a></h2>
 			<p class="mb-5">
-				ConvertGuru is made possible due to the fact that we process all conversion <strong>directly in your browser</strong> which means we don't have to process any video data on our servers. Everything you convert with ConvertGuru is encoded on your machine. This has many advantages:
+				ConvertGuru is made possible due to the fact that all conversions are processed <strong>directly in your browser</strong> which means I don't have to process any video data on my servers. Everything you convert with ConvertGuru is encoded on your machine. This has many advantages:
 			</p>
 
 			<h2 class="font-semibold text-xl mb-2">Your privacy is protected</h2>
 			<p class="mb-5">
-				Other video conversion apps require you to upload a video to their site to be able to utilize the service. <strong>We don't!</strong> A selected file is never uploaded to our servers and all processing is done in your browser. All data stays on your device. We will never know what files you convert using our service because the files never leave your device to begin with.
+				Other video conversion apps require you to upload a video to their site to be able to utilize the service. <strong>This wone doesn't!</strong> A selected file is never uploaded to our servers and all processing is done in your browser. All data stays on your device. I will never know what files you convert using our service because the files never leave your device to begin with.
 			</p>
 
 			<h2 class="font-semibold text-xl mb-2">Less bandwidth</h2>
@@ -24,8 +25,8 @@
 				This website is what developers call a "Progressive Web App". What does that mean for you? Basically, you can install this website straight to your iPhone's or Android phone's homescreen just like an app. The website will then be cached on your device so you can use it even without an internet connection!
 			</p>
 
-			<h2 class="font-semibold text-xl mb-2">We can keep the service free</h2>
-			<p>Because everything is encoded on your device we don't have to pay more for our servers than for just hosing this site! Less costs, less ads!</p>
+			<h2 class="font-semibold text-xl mb-2">I can keep the service free</h2>
+			<p>Because everything is encoded on your device I don't have to pay more for my servers than for just hosing this site! Less costs, less ads!</p>
 		</main>
 	</div>
 </template>

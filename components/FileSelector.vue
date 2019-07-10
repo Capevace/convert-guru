@@ -18,11 +18,11 @@
 					Select a photo / video
 				</button>
 			</div>
-			<span class="w-full text-center">or</span>
-			<span class="w-full text-center p-5">Simply drop your files here</span>
+			<!-- <span class="w-full text-center">or</span>
+			<span class="w-full text-center p-5">Simply drop your files here</span> -->
 		</div>
-		<div class="flex flex-wrap w-full justify-between items-center p-5" v-else>
-			<div v-for="(job, index) in jobsForType('video')" class="flex items-center justify-center w-1/2 h-64" :class="{'pr-2': index !== jobsForType('video').length - 1, 'pl-2': index !== 0 }">
+		<!-- <div class="flex flex-wrap w-full justify-between items-center p-5" v-else>
+			<div v-for="(job, index) in jobsForType('video')" class="flex items-center justify-center w-1/2 h-32" :class="{'pr-2': index !== jobsForType('video').length - 1, 'pl-2': index !== 0 }">
 				<button
 					class="file-drop-gradient w-full h-full px-3 py-1 text-indigo-100 text-xl font-semibold rounded"
 					@click="onJobButton(job)"
@@ -30,7 +30,7 @@
 					{{ labelForjob(job) }}
 				</button>
 			</div>
-		</div>
+		</div> -->
 	</section>
 </template>
 <script type="text/javascript">
@@ -49,6 +49,7 @@ export default {
 		},
 		onFileInputChange(e) {
 			this.files = e.target.files;
+			this.onJobButton('convert-to-gif');
 		},
 		onJobButton(action) {
 			this.$emit('job', {

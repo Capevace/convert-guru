@@ -67,6 +67,11 @@ export default class VideoEditor extends EventTarget {
 		};
 	}
 
+	destroy() {
+		this.video.pause();
+		this.video = null;
+	}
+
 	_createEvent(name, data) {
 		const event = new Event(name);
 		event.videoState = this.getVideoState();

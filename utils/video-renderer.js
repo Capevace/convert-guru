@@ -58,8 +58,11 @@ export default class VideoRenderer extends EventTarget {
 
 	start() {
 		console.log('play');
+		this.video.addEventListener('play', () => this._frameLoop(), {
+			once: true
+		});
+
 		this.video.play();
-		this._frameLoop();
 	}
 
 	_onEnded() {
@@ -72,18 +75,18 @@ export default class VideoRenderer extends EventTarget {
 	_frameLoop() {
 		if (this.ended) return;
 
-		this.dispatchEvent(this._createEvent('frame', { video: this.video }));
-		this.gif.addFrame(this.video, {copy: true, delay: 1000 / 30 * 1.3});
-
-		console.log(this.video.currentTime, this.settings.endAt);
-		this.dispatchEvent(this._createEvent('progress', { 
-			status: 'render', 
-			progress: (this.video.currentTime - this.settings.startAt) / this.duration
-		}));
-
 		if (this.video.currentTime > this.settings.endAt) {
 			this._onEnded();
 			return;
+		} else {
+			this.dispatchEvent(this._createEvent('frame', { video: this.video }));
+			this.gif.addFrame(this.video, {copy: true, delay: 1000 / 30 * 1.3});
+
+			console.log(this.video.currentTime, this.settings.endAt);
+			this.dispatchEvent(this._createEvent('progress', { 
+				status: 'render', 
+				progress: (this.video.currentTime - this.settings.startAt) / this.duration
+			}));
 		}
 
 		setTimeout(this._frameLoop.bind(this), 1000 / 30);

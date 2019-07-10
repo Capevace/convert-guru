@@ -23,7 +23,7 @@
 					<h2 class="font-semibold text-2xl leading-none">
 						{{ labelForjob(job.type) }}
 					</h2>
-					<h3 class="font-semibold text-gray-500 text-xl mb-5">my-fil.mp4</h3>
+					<h3 class="font-semibold text-gray-500 text-xl mb-5">{{ this.job.files[0].name }}</h3>
 					<h4 class="mb-2 font-bold text-gray-500 text-sm">Actions</h4>
 					<button
 						class="bg-gray-300 text-gray-700 w-full p-3 rounded font-semibold mb-3"
@@ -31,15 +31,16 @@
 					>
 						Play / Pause
 					</button>
-					<button
+					<!-- <button
 						class="bg-gray-300 text-gray-700 w-full p-3 rounded font-semibold mb-3"
 					>
 						Trim
-					</button>
+					</button> -->
 				</section>
 				<section class="w-full">
 					<button
 						class="bg-indigo-500 text-white w-full p-3 rounded font-semibold"
+						@click="exportJob"
 					>
 						{{ labelForjob(job.type) }}
 					</button>
@@ -87,6 +88,19 @@ export default {
 		},
 		pause() {
 			this.videoEditor.pause();
+		},
+		exportJob() {
+			this.videoEditor.destroy();
+			this.videoEditor = null;
+
+			this.$emit('export', { 
+				type: this.job.type, 
+				files: this.job.files, 
+				settings: {
+					startAt: this.videoState.startAt, 
+					endAt: this.videoState.endAt
+				}
+			});
 		},
 
 		onCurrentTimeChanged(time) {

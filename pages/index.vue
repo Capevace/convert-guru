@@ -3,11 +3,12 @@
 		class="header-gradient text-white px-16 relative antialiased min-h-screen pb-5"
 	>
 		<Header></Header>
-		<main v-if="!editJob && !renderJob" class="flex flex-wrap">
+		<main v-if="!editJob && !renderJob" class="w-1/2 flex flex-wrap m-auto">
 			<p class="text-5xl text-center w-full py-16">
 				Convert&nbsp;
 				<span class="font-mono bg-gray-800 rounded p-1">.mp4</span>&nbsp; to&nbsp;
-				<span class="font-mono bg-gray-800 rounded p-1">.gif</span>
+				<span class="font-mono bg-gray-800 rounded p-1">.gif</span><br>
+				in your browser!
 			</p>
 			<FileSelector @job="onJobCreated"></FileSelector>
 		</main>
@@ -15,8 +16,9 @@
 			<VideoEditor :job="editJob" @export="onEditorExport"></VideoEditor>
 		</div>
 		<div v-else class="bg- text-gray-900 px-8 py-6">
-			<VideoRenderer :job="renderJob"></VideoRenderer>
+			<VideoRenderer :job="renderJob" @back="editJob = renderJob = null"></VideoRenderer>
 		</div>
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -25,6 +27,7 @@ import FileSelector from '../components/FileSelector';
 import VideoEditor from '../components/VideoEditor';
 import VideoRenderer from '../components/VideoRenderer';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default {
 	data: () => ({
@@ -35,12 +38,13 @@ export default {
 		FileSelector,
 		VideoEditor,
 		VideoRenderer,
-		Header
+		Header,
+		Footer
 	},
 	methods: {
 		onJobCreated(job) {
-			this.renderJob = { type: 'convert-to-gif', files: job.files, settings: { startAt: 2, endAt: 25 } };
-			// this.editJob = job;
+			// this.renderJob = { type: 'convert-to-gif', files: job.files, settings: { startAt: 2, endAt: 25 } };
+			this.editJob = job;
 		},
 		onEditorExport(renderJob) {
 			this.renderJob = renderJob;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-gradient">
     <nuxt />
   </div>
 </template>

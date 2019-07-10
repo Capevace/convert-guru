@@ -4,14 +4,14 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'ConvertGuru - Convert MP4, GIF and more',
+    title: 'ConvertGuru - Convert MP4 to GIF in your browser!',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'ConvertGuru allows you to convert MP4 files to GIFs directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/guru-colored.png' }]
@@ -19,7 +19,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#5f71df' },
   /*
    ** Global CSS
    */
