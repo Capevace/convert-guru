@@ -1,3 +1,5 @@
+const description = 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! Your privacy is protected because you\'re not uploading anything to our servers!';
+
 module.exports = {
   mode: 'spa',
   /*
@@ -11,7 +13,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
+        content: description
       },
       {
         hid: 'apple-mobile-web-app-title',
@@ -34,7 +36,7 @@ module.exports = {
         hid: 'og:description',
         name: 'og:description',
         property: 'og:description',
-        content: 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
+        content: description
       }
     ],
     link: [
