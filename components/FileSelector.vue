@@ -10,12 +10,13 @@
 					@change="onFileInputChange"
 					ref="file-input"
 					class="hidden"
+					accept="video/*"
 				/>
 				<button
 					class="bg-indigo-700 px-4 py-2 rounded"
 					@click="triggerFileInput"
 				>
-					Select a photo / video
+					Select a video file to get started!
 				</button>
 			</div>
 			<!-- <span class="w-full text-center">or</span>

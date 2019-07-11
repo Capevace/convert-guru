@@ -9,3 +9,57 @@
 .file-drop-gradient {
 	background: linear-gradient(rgba(#3C366B, 0.2), rgba(#434190, 0.2));
 }
+
+.file-ext {
+	transform: translateY(-4rem);
+	opacity: 0;
+	pointer-events: none;
+	animation-name: file-ext-slide;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+/*
+ This is the animations for the file extention slider on the index page (the one showing .mp4, .mov etc.).
+
+ Current number of extentions: 5
+
+ How to calculate the extentionMax, step1 and step2:
+
+ extentionMax = 100 / number of extensions
+ step1 = extentionMax * 0.25
+ step2 = extentionMax * 0.75
+
+ */
+@keyframes file-ext-slide {
+	0% {
+	    transform: translateY(-4rem);
+		opacity: 0;
+		pointer-events: all;
+	}
+
+	/* step1 */ 5% {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	/* step2 */ 15% {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	/* extentionMax */ 20% {
+		transform: translateY(4rem);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	100% {
+		transform: translateY(4rem);
+		opacity: 0;
+		pointer-events: none;
+	}
+}

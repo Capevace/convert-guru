@@ -6,8 +6,15 @@
 		<main v-if="!editJob && !renderJob" class="w-1/2 flex flex-wrap m-auto">
 			<p class="text-5xl text-center w-full py-16">
 				Convert&nbsp;
-				<span class="font-mono bg-gray-800 rounded p-1">.mp4</span>&nbsp; to&nbsp;
-				<span class="font-mono bg-gray-800 rounded p-1">.gif</span><br>
+				<span class="font-mono bg-gray-800 rounded px-1 inline-flex relative overflow-hidden">
+					<span class="opacity-0 pointer-events-none">.webm</span>
+					<span class="absolute inset-0 file-ext">.mp4</span>
+					<span class="absolute inset-0 file-ext" style="animation-delay: 2s;">.mov</span>
+					<span class="absolute inset-0 file-ext" style="animation-delay: 4s;">.webm</span>
+					<span class="absolute inset-0 file-ext" style="animation-delay: 6s;">.avi</span>
+					<span class="absolute inset-0 file-ext" style="animation-delay: 8s;">.flv</span>
+				</span>&nbsp; to&nbsp;
+				<span class="font-mono bg-gray-800 rounded px-1 inline-flex relative overflow-hidden">.gif</span><br>
 				in your browser!
 			</p>
 			<FileSelector @job="onJobCreated"></FileSelector>

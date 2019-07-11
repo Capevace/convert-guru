@@ -1,4 +1,5 @@
-import GIF from 'gif.js';
+import GIF from 'gif.js.optimized';
+import { log } from './log';
 
 export default class VideoRenderer extends EventTarget {
 	constructor(renderJob) {
@@ -9,9 +10,12 @@ export default class VideoRenderer extends EventTarget {
 		this.settings = renderJob.settings;
 
 		this.ended = false;
+		this.rendering = false;
+		this.waiting = false;
 		this.duration = null;
 		this.video = null;
 		this.gif = null;
+		this.renderTimeoutId = null;
 		
 		this._setupVideo(this.files[0]);
 	}
@@ -29,13 +33,13 @@ export default class VideoRenderer extends EventTarget {
 			this.video.currentTime = this.settings.startAt;
 
 			this.gif = new GIF({
-				workers: 4,
+				workers: 5,
 				workerScript: 'gif.worker.js',
 				width: this.video.videoWidth,
 				height: this.video.videoHeight
 			})
 				.on('start', () => {
-					console.log('starting gif recording');
+					log('starting gif recording');
 					this.dispatchEvent(this._createEvent('start'));
 				})
 				.on('progress', p => {
@@ -51,13 +55,27 @@ export default class VideoRenderer extends EventTarget {
 			}));
 		};
 
-		this.video.addEventListener('play', () => console.log('started playing'));
+		this.video.addEventListener('play', () => log('started playing'));
+		this.video.addEventListener('playing', () => log('playing event'));
+		this.video.addEventListener('canplay', () => {
+			if (this.rendering && this.waiting) {
+				this.waiting = false;
+				this.renderTimeoutId = setTimeout(this._frameLoop.bind(this), 1000 / 30);
+			}
+		});
 		this.video.addEventListener('ended', this._onEnded.bind(this));
-		this.video.addEventListener('waiting', () => console.log('waiting'));
+		this.video.addEventListener('waiting', () => {
+			if (this.rendering) {
+				this.waiting = true;
+				clearTimeout(this.renderTimeoutId);
+				this.renderTimeoutId = null;
+			}
+		});
 	}
 
 	start() {
-		console.log('play');
+		log('play');
+		this.rendering = true;
 		this.video.addEventListener('play', () => this._frameLoop(), {
 			once: true
 		});
@@ -66,8 +84,9 @@ export default class VideoRenderer extends EventTarget {
 	}
 
 	_onEnded() {
-		console.log('on ended');
+		log('on ended');
 		this.ended = true;
+		this.rendering = false;
 		this.gif.render();
 		this.video.pause();
 	}
@@ -78,18 +97,18 @@ export default class VideoRenderer extends EventTarget {
 		if (this.video.currentTime > this.settings.endAt) {
 			this._onEnded();
 			return;
-		} else {
-			this.dispatchEvent(this._createEvent('frame', { video: this.video }));
+		} else if (!this.waiting) {
+			this.dispatchEvent(this._createEvent('frame', { video: this.video, frame: this.frameCounter }));
 			this.gif.addFrame(this.video, {copy: true, delay: 1000 / 30 * 1.3});
 
-			console.log(this.video.currentTime, this.settings.endAt);
+			log(this.frameCounter, this.video.currentTime, this.settings.endAt);
 			this.dispatchEvent(this._createEvent('progress', { 
 				status: 'render', 
 				progress: (this.video.currentTime - this.settings.startAt) / this.duration
 			}));
-		}
 
-		setTimeout(this._frameLoop.bind(this), 1000 / 30);
+			this.renderTimeoutId = setTimeout(this._frameLoop.bind(this), 1000 / 30);
+		}
 	}
 
 	_createEvent(name, data) {

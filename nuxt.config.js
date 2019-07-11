@@ -4,14 +4,14 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'ConvertGuru - Convert MP4 to GIF in your browser!',
+    title: 'ConvertGuru - Convert Videos to GIFs in your browser for free!',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'ConvertGuru allows you to convert MP4 files to GIFs directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
+        content: 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/guru-colored.png' }]
@@ -38,6 +38,7 @@ module.exports = {
   build: {
     postcss: {
       plugins: {
+        'postcss-simple-vars': true,
         tailwindcss: './tailwind.config.js',
         'postcss-hexrgba': true
       }

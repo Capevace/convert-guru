@@ -54,6 +54,7 @@
 </template>
 <script type="text/javascript">
 import VideoRenderer from '../utils/video-renderer';
+import { log } from '../utils/log';
 
 export default {
 	props: ['job'],
@@ -81,13 +82,13 @@ export default {
 		const videoRenderer = new VideoRenderer(this.job);
 
 		videoRenderer.addEventListener('ready', (e) => {
-			console.log('ready');
+			log('ready');
 			this.previewSize = { width: e.width, height: e.height };
 			videoRenderer.start();
 		});
 
 		videoRenderer.addEventListener('progress', (e) => {
-			console.log('progress', e.progress);
+			log('progress', e.progress);
 			this.status = e.status;
 			this.progress = this.status === 'render'
 				? e.progress * 0.5
@@ -95,12 +96,12 @@ export default {
 		});
 
 		videoRenderer.addEventListener('frame', (e) => {
-			console.log('frame');
+			log('frame');
 			context.drawImage(e.video, 0, 0);
 		});
 
 		videoRenderer.addEventListener('finished', (e) => {
-			console.log('finished', e.blob);
+			log('finished', e.blob);
 			this.gifDataUrl = URL.createObjectURL(e.blob);
 		});
 	}
