@@ -12,9 +12,34 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content: 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
+      },
+      {
+        hid: 'apple-mobile-web-app-title',
+        name: 'apple-mobile-web-app-title',
+        content: 'ConvertGuru'
+      },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        property: 'og:title',
+        content: 'ConvertGuru - Convert Videos to GIFs in your browser for free!'
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        property: 'og:site_name',
+        content: 'ConvertGuru'
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        property: 'og:description',
+        content: 'ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You\'re not uploading anything to our servers so your privacy is protected.'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/guru-colored.png' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/guru-colored.png' }
+    ]
   },
   /*
    ** Customize the progress-bar color
