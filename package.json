@@ -1,6 +1,6 @@
 {
   "name": "ConvertGuru",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "ConvertGuru allows you to convert video files (.mov, .mp4, .avi, etc.) to GIFs for free directly in your browser! You're not uploading anything to our servers so your privacy is protected.",
   "author": "Lukas Mateffy (@Capevace)",
   "private": true,
