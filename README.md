@@ -4,7 +4,7 @@
 	</a>
 	<h1>ConvertGuru – Convert videos to GIFs in your browser</h1>
 	<p>
-		<b>This is an experiment in converting video files in the browser. It works by displaying a video frame by frame on a canvas and then append the canvas' contents to a GIF.</b>
+		<b>This is an experiment in converting video files in the browser. It works by displaying a video frame by frame on a canvas and then appending the canvas' contents to a GIF.</b>
 	</p>
 </div>
 
