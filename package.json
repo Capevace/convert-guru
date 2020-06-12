@@ -19,7 +19,7 @@
     "express": "^4.16.4",
     "gif.js": "^0.2.0",
     "gif.js.optimized": "^1.0.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.12.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
