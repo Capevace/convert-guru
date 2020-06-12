@@ -2,8 +2,8 @@ const description = 'ConvertGuru allows you to convert video files (.mov, .mp4, 
 
 module.exports = {
   mode: 'spa',
-  env: {
-    baseUrl: 'https://mateffy.me/convert-guru' || 'http://localhost:3000'
+  router: {
+    base: '/convert-guru/'
   },
   /*
    ** Headers of the page
