@@ -10,8 +10,6 @@
 
 <br>
 
-[Try it out](https://convert.guru)
-
 ## Build Setup
 
 ``` bash
